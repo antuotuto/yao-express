@@ -1,0 +1,109 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  p an
+  h2 aanann
+  h2 这样的事情真的让人很开心哦
+  h1 那我们就好好的做这些事情吧
+
+  h1.title.title2#title 我是王安安
+  a(href='www.baidu.com',title='wangaan') link
+  input(name='an',type='text',value='jade')
+  input(name='an',type='checkbox',checked)
+  p.
+    1. aa<span>111</span>
+    2. bb
+    span 11
+    3. cc
+    4. dd
+
+  h2 转义
+  - var data = 'text'
+  p #{data}
+  p #{htmlData}
+  p !{htmlData}
+  p \#{htmlData}
+
+  h2 for each
+  - var an = {course: 'jade',level:'high'}
+  - for (var k in an)
+    p= an[k]
+
+  h2 each
+  each value,key in an
+    p #{key}:#{value}
+
+  h2 数组
+  - var node1 = ['node','jade','express']
+  each item in node1
+    p= item
+
+  h2 嵌套循环
+  - var anan = [{id:1,items:['a','b']},{id:2,items:['c','d']},{id:3,items:['e','f']}]
+  dl
+    each section in anan.length>0 ? anan : [{id:0,items:['没有数据']}]
+        dt= section.id
+        each item in section.items
+            dd= item
+
+  h2 while
+  - var n = 0
+  ul
+    while n < 4
+        li= n++
+
+
+  h2 if else
+  - var yao = ['yao1','yao2']
+    if yao
+        if yao.length > 1
+            p 超过两条数据: #{yao.join('.')}
+        else
+            p 没有东西
+    else
+        p 请发表文章
+
+
+  h2 unless
+  - var isyao = true
+  unless !isyao
+    p #{yao.length}
+
+
+  h2 case
+  - var name = 'express1'
+  case name
+    when 'java'
+    when 'css'
+        p css
+    when 'js': p js
+    when 'express': p express
+    default
+        p Hi #{name}
+
+  h2 mixin
+  mixin lesson
+    p 王安mixin
+  +lesson
+
+  mixin study(name,courses)
+    p #{name}
+    ul.an
+        each course in courses
+            li= course
+  +study('anan',['an','yao'])
+
+  mixin group(student)
+    h4 #{student.name}
+    +study(student.name,student.courses)
+  +group({name:'anan',courses:['jade','node']})
+
+  h3 这个是模板继承
+  block desc
+    p 这个是模板继承
+
+  block desc
+  block desc
+  block desc
